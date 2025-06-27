@@ -4,9 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Animation;
-using TamagotchiGame.Models;
 using System.Windows.Threading;
+using TamagotchiGame.Models;
 
 namespace TamagotchiGame.Services
 {
@@ -39,13 +38,13 @@ namespace TamagotchiGame.Services
 
         private readonly Dictionary<PetState, AnimationInfo> _animations = new Dictionary<PetState, AnimationInfo>
         {
-            { PetState.Idle, new AnimationInfo("Assets/Images/idle_sheet.png", 4, 0.25) },
-            { PetState.Eating, new AnimationInfo("Assets/Images/eating_sheet.png", 6, 0.2, false) },
-            { PetState.Playing, new AnimationInfo("Assets/Images/playing_sheet.png", 6, 0.15) },
-            { PetState.Sleeping, new AnimationInfo("Assets/Images/sleeping_sheet.png", 4, 0.5) },
-            { PetState.Hungry, new AnimationInfo("Assets/Images/hungry_sheet.png", 3, 0.3) },
-            { PetState.Sick, new AnimationInfo("Assets/Images/sick_sheet.png", 3, 0.4) },
-            { PetState.Tired, new AnimationInfo("Assets/Images/tired_sheet.png", 3, 0.4) }
+            { PetState.Idle, new AnimationInfo("/Assets/Images/idle_sheet.png", 4, 0.25) },
+            { PetState.Eating, new AnimationInfo("/Assets/Images/eating_sheet.png", 6, 0.2, false) },
+            { PetState.Playing, new AnimationInfo("/Assets/Images/playing_sheet.png", 6, 0.15) },
+            { PetState.Sleeping, new AnimationInfo("/Assets/Images/sleeping_sheet.png", 4, 0.5) },
+            { PetState.Hungry, new AnimationInfo("/Assets/Images/hungry_sheet.png", 3, 0.3) },
+            { PetState.Sick, new AnimationInfo("/Assets/Images/sick_sheet.png", 3, 0.4) },
+            { PetState.Tired, new AnimationInfo("/Assets/Images/tired_sheet.png", 3, 0.4) }
         };
 
         public SpriteAnimator(Image targetImage)
@@ -77,6 +76,19 @@ namespace TamagotchiGame.Services
                 if (_animations.TryGetValue(PetState.Idle, out AnimationInfo fallbackInfo))
                 {
                     PlayAnimation(fallbackInfo.SpriteSheet, fallbackInfo.FrameCount, fallbackInfo.FrameDuration, fallbackInfo.Loop);
+                }
+                else
+                {
+                    // If even that fails, use a simple single image
+                    string fallbackPath = "/Assets/Images/idle.png";
+                    try
+                    {
+                        _targetImage.Source = new BitmapImage(new Uri(fallbackPath, UriKind.Relative));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error loading fallback image: {ex.Message}");
+                    }
                 }
             }
         }
@@ -119,7 +131,7 @@ namespace TamagotchiGame.Services
                 // Use a simple placeholder image if animation fails
                 try
                 {
-                    _targetImage.Source = new BitmapImage(new Uri("Assets/Images/fallback.png", UriKind.Relative));
+                    _targetImage.Source = new BitmapImage(new Uri("/Assets/Images/fallback.png", UriKind.Relative));
                 }
                 catch
                 {

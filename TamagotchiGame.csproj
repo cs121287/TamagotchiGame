@@ -6,20 +6,25 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Assets\tamagotchi.ico</ApplicationIcon>
-    <!-- Add this line to fix the duplicate assembly attributes -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
-  <!-- Rest of your project file remains unchanged -->
   <ItemGroup>
     <None Remove="Assets\Images\eating.png" />
+    <None Remove="Assets\Images\eating_sheet.png" />
     <None Remove="Assets\Images\fallback.png" />
     <None Remove="Assets\Images\hungry.png" />
+    <None Remove="Assets\Images\hungry_sheet.png" />
     <None Remove="Assets\Images\idle.png" />
+    <None Remove="Assets\Images\idle_sheet.png" />
     <None Remove="Assets\Images\playing.png" />
+    <None Remove="Assets\Images\playing_sheet.png" />
     <None Remove="Assets\Images\sick.png" />
+    <None Remove="Assets\Images\sick_sheet.png" />
     <None Remove="Assets\Images\sleeping.png" />
+    <None Remove="Assets\Images\sleeping_sheet.png" />
     <None Remove="Assets\Images\tired.png" />
+    <None Remove="Assets\Images\tired_sheet.png" />
     <None Remove="Assets\tamagotchi.ico" />
   </ItemGroup>
 
@@ -29,13 +34,20 @@
 
   <ItemGroup>
     <Resource Include="Assets\Images\eating.png" />
+    <Resource Include="Assets\Images\eating_sheet.png" />
     <Resource Include="Assets\Images\fallback.png" />
     <Resource Include="Assets\Images\hungry.png" />
+    <Resource Include="Assets\Images\hungry_sheet.png" />
     <Resource Include="Assets\Images\idle.png" />
+    <Resource Include="Assets\Images\idle_sheet.png" />
     <Resource Include="Assets\Images\playing.png" />
+    <Resource Include="Assets\Images\playing_sheet.png" />
     <Resource Include="Assets\Images\sick.png" />
+    <Resource Include="Assets\Images\sick_sheet.png" />
     <Resource Include="Assets\Images\sleeping.png" />
+    <Resource Include="Assets\Images\sleeping_sheet.png" />
     <Resource Include="Assets\Images\tired.png" />
+    <Resource Include="Assets\Images\tired_sheet.png" />
   </ItemGroup>
 
   <ItemGroup>

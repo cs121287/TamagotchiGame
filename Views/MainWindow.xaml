@@ -62,7 +62,7 @@
         <Border Grid.Row="1" Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="2" 
                 CornerRadius="8" Margin="20">
             <Grid>
-                <Image x:Name="PetImage" Source="{Binding CurrentSpritePath}" 
+                <Image x:Name="PetImage" 
                        Stretch="Uniform" StretchDirection="Both"
                        Width="128" Height="128"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -72,20 +72,7 @@
                             <ScaleTransform x:Name="PetScale" ScaleX="1" ScaleY="1"/>
                         </TransformGroup>
                     </Image.RenderTransform>
-                    <Image.Triggers>
-                        <!-- Animation for idle state -->
-                        <EventTrigger RoutedEvent="Image.Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation 
-                                        Storyboard.TargetName="PetScale" 
-                                        Storyboard.TargetProperty="ScaleY"
-                                        From="1.0" To="1.05" Duration="0:0:1"
-                                        AutoReverse="True" RepeatBehavior="Forever"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Image.Triggers>
+                    <!-- Removed the animation trigger -->
                 </Image>
 
                 <TextBlock Text="{Binding Pet.CurrentState}" 
