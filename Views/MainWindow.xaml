@@ -1,0 +1,138 @@
+<Window x:Class="TamagotchiGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TamagotchiGame"
+        mc:Ignorable="d"
+        Title="Tamagotchi Game" Height="600" Width="400"
+        Background="#F0F0F0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Pet Name and Stats -->
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="{Binding Pet.Name}" FontSize="24" FontWeight="Bold" 
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Pet.Age, StringFormat='Age: {0} days'}" 
+                       HorizontalAlignment="Center" FontSize="16"/>
+
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="5">
+                    <TextBlock Text="Hunger:" Margin="0,0,0,2"/>
+                    <ProgressBar Value="{Binding Pet.Hunger}" Maximum="100" Height="15" 
+                                 Foreground="#FFE64D" Background="#DDDDDD"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Margin="5">
+                    <TextBlock Text="Happiness:" Margin="0,0,0,2"/>
+                    <ProgressBar Value="{Binding Pet.Happiness}" Maximum="100" Height="15" 
+                                 Foreground="#FF4DE6" Background="#DDDDDD"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="5">
+                    <TextBlock Text="Health:" Margin="0,0,0,2"/>
+                    <ProgressBar Value="{Binding Pet.Health}" Maximum="100" Height="15" 
+                                 Foreground="#4DFF4D" Background="#DDDDDD"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+                    <TextBlock Text="Energy:" Margin="0,0,0,2"/>
+                    <ProgressBar Value="{Binding Pet.Energy}" Maximum="100" Height="15" 
+                                 Foreground="#4D4DFF" Background="#DDDDDD"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <!-- Pet Display Area -->
+        <Border Grid.Row="1" Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="2" 
+                CornerRadius="8" Margin="20">
+            <Grid>
+                <Image x:Name="PetImage" Source="{Binding CurrentSpritePath}" 
+                       Stretch="Uniform" StretchDirection="Both"
+                       Width="128" Height="128"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="PetScale" ScaleX="1" ScaleY="1"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <!-- Animation for idle state -->
+                        <EventTrigger RoutedEvent="Image.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="PetScale" 
+                                        Storyboard.TargetProperty="ScaleY"
+                                        From="1.0" To="1.05" Duration="0:0:1"
+                                        AutoReverse="True" RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+
+                <TextBlock Text="{Binding Pet.CurrentState}" 
+                           HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                           Margin="0,0,0,10" FontWeight="Bold" Foreground="#666666"/>
+            </Grid>
+        </Border>
+
+        <!-- Status Message -->
+        <TextBlock Grid.Row="2" Text="{Binding StatusMessage}" 
+                   HorizontalAlignment="Center" Margin="0,0,0,10" 
+                   FontStyle="Italic" Foreground="#666666"/>
+
+        <!-- Actions Buttons -->
+        <UniformGrid Grid.Row="3" Rows="1" Columns="4" Margin="20,0,20,20">
+            <Button Content="Feed" Margin="5" Padding="10,5" Click="Feed_Click"
+                    Background="#FFE0A0" BorderBrush="#FFCC80">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Play" Margin="5" Padding="10,5" Click="Play_Click"
+                    Background="#A0FFE0" BorderBrush="#80FFCC">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Sleep" Margin="5" Padding="10,5" Click="Sleep_Click"
+                    Background="#A0A0FF" BorderBrush="#8080FF">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Medicine" Margin="5" Padding="10,5" Click="Medicine_Click"
+                    Background="#FFA0A0" BorderBrush="#FF8080">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </UniformGrid>
+    </Grid>
+</Window>

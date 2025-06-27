@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\tamagotchi.ico</ApplicationIcon>
+    <!-- Add this line to fix the duplicate assembly attributes -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <!-- Rest of your project file remains unchanged -->
+  <ItemGroup>
+    <None Remove="Assets\Images\eating.png" />
+    <None Remove="Assets\Images\fallback.png" />
+    <None Remove="Assets\Images\hungry.png" />
+    <None Remove="Assets\Images\idle.png" />
+    <None Remove="Assets\Images\playing.png" />
+    <None Remove="Assets\Images\sick.png" />
+    <None Remove="Assets\Images\sleeping.png" />
+    <None Remove="Assets\Images\tired.png" />
+    <None Remove="Assets\tamagotchi.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\tamagotchi.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\eating.png" />
+    <Resource Include="Assets\Images\fallback.png" />
+    <Resource Include="Assets\Images\hungry.png" />
+    <Resource Include="Assets\Images\idle.png" />
+    <Resource Include="Assets\Images\playing.png" />
+    <Resource Include="Assets\Images\sick.png" />
+    <Resource Include="Assets\Images\sleeping.png" />
+    <Resource Include="Assets\Images\tired.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Sounds\" />
+  </ItemGroup>
+
+</Project>
